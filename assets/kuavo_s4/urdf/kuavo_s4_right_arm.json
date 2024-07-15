@@ -1,0 +1,39 @@
+{
+  "elements": [
+    "torso",
+    "r_arm_pitch",
+    "r_arm_pitch",
+    "r_arm_roll",
+    "r_arm_roll",
+    "r_arm_yaw",
+    "r_arm_yaw",
+    "r_forearm_pitch",
+    "r_forearm_pitch",
+    "r_hand_yaw",
+    "r_hand_yaw",
+    "r_hand_pitch",
+    "r_hand_pitch",
+    "r_hand_roll",
+    "r_hand_roll"
+  ],
+  "urdf_file": "biped_s4.urdf",
+  "active_links_mask": [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false
+  ],
+  "last_link_vector": [
+    0,
+    -0.1,
+    0
+  ],
+  "name": "kuavo_s4_right_arm",
+  "version": "v1"
+}
