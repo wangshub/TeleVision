@@ -1,0 +1,243 @@
+digraph robot {
+	link_torso [label=torso color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_torso_camera [label=torso_camera color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_torso_camera
+	link_torso_camera [label=torso_camera color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_torso_camera -> link_torso_camera
+	joint_l_arm_pitch [label=l_arm_pitch color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_l_arm_pitch
+	link_l_arm_pitch [label=l_arm_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_arm_pitch -> link_l_arm_pitch
+	joint_l_arm_roll [label=l_arm_roll color=green fillcolor=lightgrey style=filled]
+	link_l_arm_pitch -> joint_l_arm_roll
+	link_l_arm_roll [label=l_arm_roll color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_arm_roll -> link_l_arm_roll
+	joint_l_arm_yaw [label=l_arm_yaw color=green fillcolor=lightgrey style=filled]
+	link_l_arm_roll -> joint_l_arm_yaw
+	link_l_arm_yaw [label=l_arm_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_arm_yaw -> link_l_arm_yaw
+	joint_l_forearm_pitch [label=l_forearm_pitch color=green fillcolor=lightgrey style=filled]
+	link_l_arm_yaw -> joint_l_forearm_pitch
+	link_l_forearm_pitch [label=l_forearm_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_forearm_pitch -> link_l_forearm_pitch
+	joint_l_hand_yaw [label=l_hand_yaw color=green fillcolor=lightgrey style=filled]
+	link_l_forearm_pitch -> joint_l_hand_yaw
+	link_l_hand_yaw [label=l_hand_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_hand_yaw -> link_l_hand_yaw
+	joint_l_hand_pitch [label=l_hand_pitch color=green fillcolor=lightgrey style=filled]
+	link_l_hand_yaw -> joint_l_hand_pitch
+	link_l_hand_pitch [label=l_hand_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_hand_pitch -> link_l_hand_pitch
+	joint_l_hand_roll [label=l_hand_roll color=green fillcolor=lightgrey style=filled]
+	link_l_hand_pitch -> joint_l_hand_roll
+	link_l_hand_roll [label=l_hand_roll color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_hand_roll -> link_l_hand_roll
+	joint_l_hand_end_virtual [label=l_hand_end_virtual color=green fillcolor=lightgrey style=filled]
+	link_l_hand_roll -> joint_l_hand_end_virtual
+	link_l_hand_end_virtual [label=l_hand_end_virtual color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_hand_end_virtual -> link_l_hand_end_virtual
+	joint_l_thumb_proximal_yaw [label=l_thumb_proximal_yaw color=green fillcolor=lightgrey style=filled]
+	link_l_hand_roll -> joint_l_thumb_proximal_yaw
+	link_l_thumb_proximal_yaw [label=l_thumb_proximal_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_thumb_proximal_yaw -> link_l_thumb_proximal_yaw
+	joint_l_thumb_distal_pitch [label=l_thumb_distal_pitch color=green fillcolor=lightgrey style=filled]
+	link_l_thumb_proximal_yaw -> joint_l_thumb_distal_pitch
+	link_l_thumb_distal_pitch [label=l_thumb_distal_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_thumb_distal_pitch -> link_l_thumb_distal_pitch
+	joint_l_index_proximal_finger [label=l_index_proximal_finger color=green fillcolor=lightgrey style=filled]
+	link_l_hand_roll -> joint_l_index_proximal_finger
+	link_l_index_proximal_finger [label=l_index_proximal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_index_proximal_finger -> link_l_index_proximal_finger
+	joint_l_index_distal_finger [label=l_index_distal_finger color=green fillcolor=lightgrey style=filled]
+	link_l_index_proximal_finger -> joint_l_index_distal_finger
+	link_l_index_distal_finger [label=l_index_distal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_index_distal_finger -> link_l_index_distal_finger
+	joint_l_middle_proximal_finger [label=l_middle_proximal_finger color=green fillcolor=lightgrey style=filled]
+	link_l_hand_roll -> joint_l_middle_proximal_finger
+	link_l_middle_proximal_finger [label=l_middle_proximal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_middle_proximal_finger -> link_l_middle_proximal_finger
+	joint_l_middle_distal_finger [label=l_middle_distal_finger color=green fillcolor=lightgrey style=filled]
+	link_l_middle_proximal_finger -> joint_l_middle_distal_finger
+	link_l_middle_distal_finger [label=l_middle_distal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_middle_distal_finger -> link_l_middle_distal_finger
+	joint_l_ring_proximal_finger [label=l_ring_proximal_finger color=green fillcolor=lightgrey style=filled]
+	link_l_hand_roll -> joint_l_ring_proximal_finger
+	link_l_ring_proximal_finger [label=l_ring_proximal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_ring_proximal_finger -> link_l_ring_proximal_finger
+	joint_l_ring_distal_finger [label=l_ring_distal_finger color=green fillcolor=lightgrey style=filled]
+	link_l_ring_proximal_finger -> joint_l_ring_distal_finger
+	link_l_ring_distal_finger [label=l_ring_distal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_ring_distal_finger -> link_l_ring_distal_finger
+	joint_l_pinky_proximal_finger [label=l_pinky_proximal_finger color=green fillcolor=lightgrey style=filled]
+	link_l_hand_roll -> joint_l_pinky_proximal_finger
+	link_l_pinky_proximal_finger [label=l_pinky_proximal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_pinky_proximal_finger -> link_l_pinky_proximal_finger
+	joint_l_pinky_distal_finger [label=l_pinky_distal_finger color=green fillcolor=lightgrey style=filled]
+	link_l_pinky_proximal_finger -> joint_l_pinky_distal_finger
+	link_l_pinky_distal_finger [label=l_pinky_distal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_pinky_distal_finger -> link_l_pinky_distal_finger
+	joint_r_arm_pitch [label=r_arm_pitch color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_r_arm_pitch
+	link_r_arm_pitch [label=r_arm_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_arm_pitch -> link_r_arm_pitch
+	joint_r_arm_roll [label=r_arm_roll color=green fillcolor=lightgrey style=filled]
+	link_r_arm_pitch -> joint_r_arm_roll
+	link_r_arm_roll [label=r_arm_roll color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_arm_roll -> link_r_arm_roll
+	joint_r_arm_yaw [label=r_arm_yaw color=green fillcolor=lightgrey style=filled]
+	link_r_arm_roll -> joint_r_arm_yaw
+	link_r_arm_yaw [label=r_arm_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_arm_yaw -> link_r_arm_yaw
+	joint_r_forearm_pitch [label=r_forearm_pitch color=green fillcolor=lightgrey style=filled]
+	link_r_arm_yaw -> joint_r_forearm_pitch
+	link_r_forearm_pitch [label=r_forearm_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_forearm_pitch -> link_r_forearm_pitch
+	joint_r_hand_yaw [label=r_hand_yaw color=green fillcolor=lightgrey style=filled]
+	link_r_forearm_pitch -> joint_r_hand_yaw
+	link_r_hand_yaw [label=r_hand_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_hand_yaw -> link_r_hand_yaw
+	joint_r_hand_pitch [label=r_hand_pitch color=green fillcolor=lightgrey style=filled]
+	link_r_hand_yaw -> joint_r_hand_pitch
+	link_r_hand_pitch [label=r_hand_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_hand_pitch -> link_r_hand_pitch
+	joint_r_hand_roll [label=r_hand_roll color=green fillcolor=lightgrey style=filled]
+	link_r_hand_pitch -> joint_r_hand_roll
+	link_r_hand_roll [label=r_hand_roll color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_hand_roll -> link_r_hand_roll
+	joint_r_hand_end_virtual [label=r_hand_end_virtual color=green fillcolor=lightgrey style=filled]
+	link_r_hand_roll -> joint_r_hand_end_virtual
+	link_r_hand_end_virtual [label=r_hand_end_virtual color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_hand_end_virtual -> link_r_hand_end_virtual
+	joint_r_thumb_proximal_yaw [label=r_thumb_proximal_yaw color=green fillcolor=lightgrey style=filled]
+	link_r_hand_roll -> joint_r_thumb_proximal_yaw
+	link_r_thumb_proximal_yaw [label=r_thumb_proximal_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_thumb_proximal_yaw -> link_r_thumb_proximal_yaw
+	joint_r_thumb_distal_pitch [label=r_thumb_distal_pitch color=green fillcolor=lightgrey style=filled]
+	link_r_thumb_proximal_yaw -> joint_r_thumb_distal_pitch
+	link_r_thumb_distal_pitch [label=r_thumb_distal_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_thumb_distal_pitch -> link_r_thumb_distal_pitch
+	joint_r_index_proximal_finger [label=r_index_proximal_finger color=green fillcolor=lightgrey style=filled]
+	link_r_hand_roll -> joint_r_index_proximal_finger
+	link_r_index_proximal_finger [label=r_index_proximal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_index_proximal_finger -> link_r_index_proximal_finger
+	joint_r_index_distal_finger [label=r_index_distal_finger color=green fillcolor=lightgrey style=filled]
+	link_r_index_proximal_finger -> joint_r_index_distal_finger
+	link_r_index_distal_finger [label=r_index_distal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_index_distal_finger -> link_r_index_distal_finger
+	joint_r_middle_proximal_finger [label=r_middle_proximal_finger color=green fillcolor=lightgrey style=filled]
+	link_r_hand_roll -> joint_r_middle_proximal_finger
+	link_r_middle_proximal_finger [label=r_middle_proximal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_middle_proximal_finger -> link_r_middle_proximal_finger
+	joint_r_middle_distal_finger [label=r_middle_distal_finger color=green fillcolor=lightgrey style=filled]
+	link_r_middle_proximal_finger -> joint_r_middle_distal_finger
+	link_r_middle_distal_finger [label=r_middle_distal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_middle_distal_finger -> link_r_middle_distal_finger
+	joint_r_ring_proximal_finger [label=r_ring_proximal_finger color=green fillcolor=lightgrey style=filled]
+	link_r_hand_roll -> joint_r_ring_proximal_finger
+	link_r_ring_proximal_finger [label=r_ring_proximal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_ring_proximal_finger -> link_r_ring_proximal_finger
+	joint_r_ring_distal_finger [label=r_ring_distal_finger color=green fillcolor=lightgrey style=filled]
+	link_r_ring_proximal_finger -> joint_r_ring_distal_finger
+	link_r_ring_distal_finger [label=r_ring_distal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_ring_distal_finger -> link_r_ring_distal_finger
+	joint_r_pinky_proximal_finger [label=r_pinky_proximal_finger color=green fillcolor=lightgrey style=filled]
+	link_r_hand_roll -> joint_r_pinky_proximal_finger
+	link_r_pinky_proximal_finger [label=r_pinky_proximal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_pinky_proximal_finger -> link_r_pinky_proximal_finger
+	joint_r_pinky_distal_finger [label=r_pinky_distal_finger color=green fillcolor=lightgrey style=filled]
+	link_r_pinky_proximal_finger -> joint_r_pinky_distal_finger
+	link_r_pinky_distal_finger [label=r_pinky_distal_finger color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_pinky_distal_finger -> link_r_pinky_distal_finger
+	joint_l_leg_roll [label=l_leg_roll color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_l_leg_roll
+	link_l_leg_roll [label=l_leg_roll color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_leg_roll -> link_l_leg_roll
+	joint_l_leg_yaw [label=l_leg_yaw color=green fillcolor=lightgrey style=filled]
+	link_l_leg_roll -> joint_l_leg_yaw
+	link_l_leg_yaw [label=l_leg_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_leg_yaw -> link_l_leg_yaw
+	joint_l_leg_pitch [label=l_leg_pitch color=green fillcolor=lightgrey style=filled]
+	link_l_leg_yaw -> joint_l_leg_pitch
+	link_l_leg_pitch [label=l_leg_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_leg_pitch -> link_l_leg_pitch
+	joint_l_knee [label=l_knee color=green fillcolor=lightgrey style=filled]
+	link_l_leg_pitch -> joint_l_knee
+	link_l_knee [label=l_knee color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_knee -> link_l_knee
+	joint_l_foot_pitch [label=l_foot_pitch color=green fillcolor=lightgrey style=filled]
+	link_l_knee -> joint_l_foot_pitch
+	link_l_foot_pitch [label=l_foot_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_foot_pitch -> link_l_foot_pitch
+	joint_l_foot_roll [label=l_foot_roll color=green fillcolor=lightgrey style=filled]
+	link_l_foot_pitch -> joint_l_foot_roll
+	link_l_foot_roll [label=l_foot_roll color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_foot_roll -> link_l_foot_roll
+	joint_l_l_bar [label=l_l_bar color=green fillcolor=lightgrey style=filled]
+	link_l_knee -> joint_l_l_bar
+	link_l_l_bar [label=l_l_bar color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_l_bar -> link_l_l_bar
+	joint_l_l_tendon [label=l_l_tendon color=green fillcolor=lightgrey style=filled]
+	link_l_l_bar -> joint_l_l_tendon
+	link_l_l_tendon [label=l_l_tendon color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_l_tendon -> link_l_l_tendon
+	joint_l_r_bar [label=l_r_bar color=green fillcolor=lightgrey style=filled]
+	link_l_knee -> joint_l_r_bar
+	link_l_r_bar [label=l_r_bar color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_r_bar -> link_l_r_bar
+	joint_l_r_tendon [label=l_r_tendon color=green fillcolor=lightgrey style=filled]
+	link_l_r_bar -> joint_l_r_tendon
+	link_l_r_tendon [label=l_r_tendon color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_l_r_tendon -> link_l_r_tendon
+	joint_r_leg_roll [label=r_leg_roll color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_r_leg_roll
+	link_r_leg_roll [label=r_leg_roll color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_leg_roll -> link_r_leg_roll
+	joint_r_leg_yaw [label=r_leg_yaw color=green fillcolor=lightgrey style=filled]
+	link_r_leg_roll -> joint_r_leg_yaw
+	link_r_leg_yaw [label=r_leg_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_leg_yaw -> link_r_leg_yaw
+	joint_r_leg_pitch [label=r_leg_pitch color=green fillcolor=lightgrey style=filled]
+	link_r_leg_yaw -> joint_r_leg_pitch
+	link_r_leg_pitch [label=r_leg_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_leg_pitch -> link_r_leg_pitch
+	joint_r_knee [label=r_knee color=green fillcolor=lightgrey style=filled]
+	link_r_leg_pitch -> joint_r_knee
+	link_r_knee [label=r_knee color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_knee -> link_r_knee
+	joint_r_foot_pitch [label=r_foot_pitch color=green fillcolor=lightgrey style=filled]
+	link_r_knee -> joint_r_foot_pitch
+	link_r_foot_pitch [label=r_foot_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_foot_pitch -> link_r_foot_pitch
+	joint_r_foot_roll [label=r_foot_roll color=green fillcolor=lightgrey style=filled]
+	link_r_foot_pitch -> joint_r_foot_roll
+	link_r_foot_roll [label=r_foot_roll color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_foot_roll -> link_r_foot_roll
+	joint_r_l_bar [label=r_l_bar color=green fillcolor=lightgrey style=filled]
+	link_r_knee -> joint_r_l_bar
+	link_r_l_bar [label=r_l_bar color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_l_bar -> link_r_l_bar
+	joint_r_l_tendon [label=r_l_tendon color=green fillcolor=lightgrey style=filled]
+	link_r_l_bar -> joint_r_l_tendon
+	link_r_l_tendon [label=r_l_tendon color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_l_tendon -> link_r_l_tendon
+	joint_r_r_bar [label=r_r_bar color=green fillcolor=lightgrey style=filled]
+	link_r_knee -> joint_r_r_bar
+	link_r_r_bar [label=r_r_bar color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_r_bar -> link_r_r_bar
+	joint_r_r_tendon [label=r_r_tendon color=green fillcolor=lightgrey style=filled]
+	link_r_r_bar -> joint_r_r_tendon
+	link_r_r_tendon [label=r_r_tendon color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_r_r_tendon -> link_r_r_tendon
+	joint_head_yaw [label=head_yaw color=green fillcolor=lightgrey style=filled]
+	link_torso -> joint_head_yaw
+	link_head_yaw [label=head_yaw color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_head_yaw -> link_head_yaw
+	joint_head_pitch [label=head_pitch color=green fillcolor=lightgrey style=filled]
+	link_head_yaw -> joint_head_pitch
+	link_head_pitch [label=head_pitch color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_head_pitch -> link_head_pitch
+	joint_head_camera [label=head_camera color=green fillcolor=lightgrey style=filled]
+	link_head_pitch -> joint_head_camera
+	link_head_camera [label=head_camera color=blue fillcolor=lightgrey shape=box style=filled]
+	joint_head_camera -> link_head_camera
+}

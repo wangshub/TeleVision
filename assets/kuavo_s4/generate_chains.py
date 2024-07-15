@@ -12,7 +12,6 @@ robotis_op3_left_arm_links = ["torso",
                               "l_hand_roll"
                               ]
 
-
 robotis_op3_left_arm_joints = ["l_arm_pitch",
                                "l_arm_roll",
                                "l_arm_yaw",
@@ -28,7 +27,7 @@ robotis_op3_left_arm_elements = [x for pair in zip(robotis_op3_left_arm_links, r
 robotis_op3_left_arm_chain = chain.Chain.from_urdf_file(
     "urdf/biped_s4.urdf",
     base_elements=robotis_op3_left_arm_elements,
-    last_link_vector=[0, 0.10, 0],
+    last_link_vector=[0, 0.0, 0],
     active_links_mask=[False] + 7 * [True] + [False] + [False],
     symbolic=False,
     name="kuavo_s4_left_arm")
@@ -64,7 +63,7 @@ robotis_op3_right_arm_elements = [x for pair in zip(robotis_op3_right_arm_links,
 robotis_op3_right_arm_chain = chain.Chain.from_urdf_file(
     "urdf/biped_s4.urdf",
     base_elements=robotis_op3_right_arm_elements,
-    last_link_vector=[0, -0.10, 0],
+    last_link_vector=[0, -0.0, 0],
     active_links_mask=[False] + 7 * [True] + [False] + [False],
     symbolic=False,
     name="kuavo_s4_right_arm"
