@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="biped_s4">
+    
+    <link name="r_hand_yaw">
+        <inertial>
+            <origin xyz="-0.000112955483967687 -0.00974449526683929 0.0227958280839014" rpy="0 0 0" />
+            <mass value="0.157334748658065" />
+            <inertia ixx="7.64922331363792E-05" ixy="8.75195261100849E-09" ixz="1.38703019538351E-08" iyy="0.000122230542206117" iyz="-1.1123944412365E-06" izz="8.44929064837534E-05" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_hand_yaw.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_hand_yaw.STL" />
+            </geometry>
+        </collision>
+    </link>
+    
+    <link name="r_hand_pitch">
+        <inertial>
+            <origin xyz="0.00735986990228201 -0.00475238307648407 -0.0529411193942666" rpy="0 0 0" />
+            <mass value="0.0853891534309893" />
+            <inertia ixx="4.77321358097823E-05" ixy="-2.99709432812987E-06" ixz="4.71488437974189E-06" iyy="3.42470226388499E-05" iyz="4.61094199971348E-06" izz="2.51299600072389E-05" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_hand_pitch.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_hand_pitch.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_hand_pitch" type="revolute">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="r_hand_yaw" />
+        <child link="r_hand_pitch" />
+        <axis xyz="0 1 0" />
+        <limit velocity="1" effort="20" lower="-1.5708" upper="1.5708" />
+    </joint>
+    <link name="r_hand_roll">
+        <inertial>
+            <origin xyz="0.00300067727381764 -0.00948299721849261 -0.0665274119439575" rpy="0 0 0" />
+            <mass value="0.151513451672293" />
+            <inertia ixx="9.14013694279149E-05" ixy="-3.00635383669835E-07" ixz="-4.88449841632957E-06" iyy="0.000140002484811824" iyz="-1.18898278478315E-05" izz="0.000125153253041102" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_hand_roll.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_hand_roll.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_hand_roll" type="revolute">
+        <origin xyz="0 0 -0.0590000000076598" rpy="0 0 0" />
+        <parent link="r_hand_pitch" />
+        <child link="r_hand_roll" />
+        <axis xyz="1 0 0" />
+        <limit velocity="1" effort="20" lower="-1.5708" upper="1.5708" />
+    </joint>
+    <link name="r_hand_end_virtual">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <sphere radius="0.001"/>
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="r_hand_end_virtual" type="fixed">
+        <origin xyz="0 0 -0.1545" rpy="0 0 0" />
+        <parent link="r_hand_roll" />
+        <child link="r_hand_end_virtual" />
+    </joint>
+    <link name="r_thumb_proximal_yaw">
+        <inertial>
+            <origin xyz="0.0059016659387813 0.00373751061983887 0.00028087782921854" rpy="0 0 0" />
+            <mass value="0.00177457706476174" />
+            <inertia ixx="5.51947770854431E-08" ixy="-3.05430802968252E-08" ixz="-8.9931290359755E-10" iyy="7.93062784538199E-08" iyz="-4.09905263561892E-10" izz="9.86616855273956E-08" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_thumb_proximal_yaw.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 0.25" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_thumb_proximal_yaw.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_thumb_proximal_yaw" type="continuous">
+        <origin xyz="0.0240162583145044 0.0216278329431261 -0.110700000402968" rpy="0 0 0" />
+        <parent link="r_hand_roll" />
+        <child link="r_thumb_proximal_yaw" />
+        <axis xyz="0 0 1" />
+    </joint>
+    <link name="r_thumb_distal_pitch">
+        <inertial>
+            <origin xyz="0.00835400525904937 -1.55022040249087E-06 -0.037205152988654" rpy="0 0 0" />
+            <mass value="0.0143594976127551" />
+            <inertia ixx="7.15388296788212E-06" ixy="-6.69727355587774E-11" ixz="-2.03395160081791E-07" iyy="6.87910807838939E-06" iyz="5.44431164399722E-12" izz="9.14755969331916E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_thumb_distal_pitch.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_thumb_distal_pitch.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_thumb_distal_pitch" type="continuous">
+        <origin xyz="0.0120000000000024 0.00650000000000001 0.00039999999999929" rpy="0 0 0" />
+        <parent link="r_thumb_proximal_yaw" />
+        <child link="r_thumb_distal_pitch" />
+        <axis xyz="0 -1 0" />
+    </joint>
+    <link name="r_index_proximal_finger">
+        <inertial>
+            <origin xyz="0.000117630091740083 -0.00210444255674574 -0.0171028308310166" rpy="0 0 0" />
+            <mass value="0.00213737899371432" />
+            <inertia ixx="3.18602101869156E-07" ixy="-1.25362698289955E-09" ixz="2.18478331808027E-09" iyy="3.41870944894183E-07" iyz="-3.87179337852981E-08" izz="9.68030538354866E-08" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_index_proximal_finger.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_index_proximal_finger.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_index_proximal_finger" type="continuous">
+        <origin xyz="0.0285187933054979 -0.0039487923396026 -0.174730558860479" rpy="0 -0.0311675978215671 0" />
+        <parent link="r_hand_roll" />
+        <child link="r_index_proximal_finger" />
+        <axis xyz="0.998506141360647 0.0546395979585406 0" />
+    </joint>
+    <link name="r_index_distal_finger">
+        <inertial>
+            <origin xyz="-8.9232232394443E-05 0.00161946515080247 -0.0254573000709627" rpy="0 0 0" />
+            <mass value="0.00504466012184763" />
+            <inertia ixx="7.63500198005666E-07" ixy="-8.93025400014092E-10" ixz="-1.75721366263703E-09" iyy="7.80112979178675E-07" iyz="3.23088054385963E-08" izz="1.15370268537332E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_index_distal_finger.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_index_distal_finger.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_index_distal_finger" type="continuous">
+        <origin xyz="0.000133519493595612 -0.00243998929947775 -0.0349145904281185" rpy="0 0 0" />
+        <parent link="r_index_proximal_finger" />
+        <child link="r_index_distal_finger" />
+        <axis xyz="-0.998506141360649 -0.0546395979585212 0" />
+    </joint>
+    <link name="r_middle_proximal_finger">
+        <inertial>
+            <origin xyz="8.44813785091242E-08 -0.00270210141804927 -0.0207829698234612" rpy="0 0 0" />
+            <mass value="0.00260456401479316" />
+            <inertia ixx="5.09608239447983E-07" ixy="-1.75029152849441E-12" ixz="1.79637389141395E-12" iyy="5.36695856290199E-07" iyz="-5.70433154945367E-08" izz="1.25808948975584E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_middle_proximal_finger.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_middle_proximal_finger.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_middle_proximal_finger" type="continuous">
+        <origin xyz="0.00751625831450465 -0.00820381922686125 -0.178435376742697" rpy="0 0 0" />
+        <parent link="r_hand_roll" />
+        <child link="r_middle_proximal_finger" />
+        <axis xyz="1 0 0" />
+    </joint>
+    <link name="r_middle_distal_finger">
+        <inertial>
+            <origin xyz="-6.04521225378366E-07 0.00162350982710252 -0.025457191512641" rpy="0 0 0" />
+            <mass value="0.00504466863846282" />
+            <inertia ixx="7.6345530976374E-07" ixy="1.85475490772791E-11" ixz="1.04892536633895E-11" iyy="7.80159403477418E-07" iyz="3.23975164550656E-08" izz="1.15374581204344E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_middle_distal_finger.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_middle_distal_finger.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_middle_distal_finger" type="continuous">
+        <origin xyz="0 -0.00292977189725413 -0.0418976901109125" rpy="0 0 0" />
+        <parent link="r_middle_proximal_finger" />
+        <child link="r_middle_distal_finger" />
+        <axis xyz="-1 0 0" />
+    </joint>
+    <link name="r_ring_proximal_finger">
+        <inertial>
+            <origin xyz="-0.000147627677307374 -0.00269935568307084 -0.0207828027334272" rpy="0 0 0" />
+            <mass value="0.00260456442916689" />
+            <inertia ixx="5.09688869653555E-07" ixy="1.47567826577373E-09" ixz="-3.11642075126123E-09" iyy="5.36608130664138E-07" iyz="-5.69836124932145E-08" izz="1.25816010690367E-07" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_ring_proximal_finger.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_ring_proximal_finger.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_ring_proximal_finger" type="continuous">
+        <origin xyz="-0.0135862766764854 -0.00807856148813096 -0.176446661066022" rpy="0 0.0311675978215922 0" />
+        <parent link="r_hand_roll" />
+        <child link="r_ring_proximal_finger" />
+        <axis xyz="0.998506141360648 -0.0546395979585354 0" />
+    </joint>
+    <link name="r_ring_distal_finger">
+        <inertial>
+            <origin xyz="-3.05447320099322E-05 -0.00055182982921842 -0.014581933967133" rpy="0 0 0" />
+            <mass value="0.00182869050551967" />
+            <inertia ixx="2.6351019026747E-07" ixy="6.80589443443767E-10" ixz="3.40598850881854E-10" iyy="2.75942607379873E-07" iyz="6.18066814960194E-09" izz="4.69846444924734E-08" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_ring_distal_finger.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_ring_distal_finger.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_ring_distal_finger" type="continuous">
+        <origin xyz="-0.000160223392313565 -0.00292798715935183 -0.0418975085136676" rpy="0 0 0" />
+        <parent link="r_ring_proximal_finger" />
+        <child link="r_ring_distal_finger" />
+        <axis xyz="-0.996566833460806 -0.0546395979585212 -0.0622017747402293" />
+    </joint>
+    <link name="r_pinky_proximal_finger">
+        <inertial>
+            <origin xyz="-0.000117692942698921 -0.00210238254136691 -0.0171031038120715" rpy="0 0 0" />
+            <mass value="0.00213737106866596" />
+            <inertia ixx="3.18613658418781E-07" ixy="1.35743663351377E-09" ixz="-2.14595314636863E-09" iyy="3.4186844347216E-07" iyz="-3.86910999425676E-08" izz="9.67934520226222E-08" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_pinky_proximal_finger.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_pinky_proximal_finger.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_pinky_proximal_finger" type="continuous">
+        <origin xyz="-0.0342146631046227 -0.0036338733880803 -0.17022700803684" rpy="0 0.0659957839625563 0" />
+        <parent link="r_hand_roll" />
+        <child link="r_pinky_proximal_finger" />
+        <axis xyz="0.998370307122331 -0.0570677654763477 0" />
+    </joint>
+    <link name="r_pinky_distal_finger">
+        <inertial>
+            <origin xyz="-6.68864174628164E-05 -0.00079192546781276 -0.0127151268014948" rpy="0 0 0" />
+            <mass value="0.00162993727561191" />
+            <inertia ixx="1.83853268460625E-07" ixy="6.36687597538947E-10" ixz="-4.24280859276174E-10" iyy="1.94697260253276E-07" iyz="1.38051635062388E-09" izz="3.94676279750627E-08" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_pinky_distal_finger.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://biped_s4/meshes/r_pinky_distal_finger.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="r_pinky_distal_finger" type="continuous">
+        <origin xyz="-0.00013921709411558 -0.0024355292668054 -0.0349148795757724" rpy="0 0 0" />
+        <parent link="r_pinky_proximal_finger" />
+        <child link="r_pinky_distal_finger" />
+        <axis xyz="-0.99837030712233 0.0570677654763578 0" />
+    </joint>
+    
+</robot>
+
