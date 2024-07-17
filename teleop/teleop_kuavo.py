@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+
+import rospy
+from handcontrollerdemorosnode.msg import armPoseWithTimeStamp
+
 from isaacgym import gymapi
 from isaacgym import gymutil
 from isaacgym import gymtorch
@@ -17,6 +22,19 @@ import argparse
 import time
 import yaml
 from multiprocessing import Array, Process, shared_memory, Queue, Manager, Event, Semaphore
+
+rospy.init_node('ik_arm_target_topic_publisher')
+
+def arm_pose_publish(offset, left_hand_pose, right_hand_pose):
+    pub = rospy.Publisher('/kuavo_hand_pose', armPoseWithTimeStamp, queue_size=10)  # 创建一个发布者
+    rospy.sleep(0.5)
+
+    msg = armPoseWithTimeStamp()
+    msg.offset = offset
+    msg.left_hand_pose = left_hand_pose
+    msg.right_hand_pose = right_hand_pose
+    pub.publish(msg)
+
 
 class VuerTeleop:
     def __init__(self, config_file_path):
@@ -44,13 +62,17 @@ class VuerTeleop:
         self.right_retargeting = right_retargeting_config.build()
 
     def step(self):
+        dx = 0
+        dy = 0.05
+        dz = -1.11
+        
         head_mat, left_wrist_mat, right_wrist_mat, left_hand_mat, right_hand_mat = self.processor.process(self.tv)
 
         head_rmat = head_mat[:3, :3]
 
-        left_pose = np.concatenate([left_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]),
+        left_pose = np.concatenate([left_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]) + np.array([dx, dy, dz]),
                                     rotations.quaternion_from_matrix(left_wrist_mat[:3, :3])[[1, 2, 3, 0]]])
-        right_pose = np.concatenate([right_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]),
+        right_pose = np.concatenate([right_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]) + np.array([dx, dy, dz]),
                                      rotations.quaternion_from_matrix(right_wrist_mat[:3, :3])[[1, 2, 3, 0]]])
         left_qpos = self.left_retargeting.retarget(left_hand_mat[tip_indices])[[4, 5, 6, 7, 10, 11, 8, 9, 0, 1, 2, 3]]
         right_qpos = self.right_retargeting.retarget(right_hand_mat[tip_indices])[[4, 5, 6, 7, 10, 11, 8, 9, 0, 1, 2, 3]]
@@ -256,10 +278,26 @@ if __name__ == '__main__':
     simulator = Sim()
 
     try:
-        while True:
+        while not rospy.is_shutdown():
             head_rmat, left_pose, right_pose, left_qpos, right_qpos = teleoperator.step()
             
-            print(head_rmat, left_pose, right_pose, left_qpos, right_qpos)
+            print(f"left_pose = {list(left_pose)} \
+                    right_pose = {list(right_pose)}")
+            
+            left_hand_pose = list(left_pose[3:7]) + list(left_pose[0:3])
+            right_hand_pose = list(right_pose[3:7]) + list(right_pose[0:3])
+            
+            distance = np.linalg.norm(left_pose[0:3] - right_pose[0:3])
+            # print(f"distance = {distance}")
+            
+            if distance < 0.2:
+                print(f"distance = {distance}")
+                
+                left_hand_pose = [0.19328227213020552, -0.08784123850111165, -0.0024117972675048727, 0.9772001142717476, 0.15, 0.18858534693717957, -0.2533614903688431]
+                
+                arm_pose_publish(0, left_hand_pose, right_hand_pose)
+            
+            # arm_pose_publish(1, left_hand_pose, right_hand_pose)
             
             left_img, right_img = simulator.step(head_rmat, left_pose, right_pose, left_qpos, right_qpos)
             np.copyto(teleoperator.img_array, np.hstack((left_img, right_img)))

@@ -1,47 +1,50 @@
 import mujoco
 import mujoco.viewer
 import numpy as np
-
+import time
 from dm_control import mjcf
 from dm_control.utils.inverse_kinematics import qpos_from_site_pose
 
 
 #add path
 xml_file = "../assets/kuavo_s4/meshes/biped_s4.xml"
-physics = mjcf.Physics.from_mjcf_model(xml_file)
+mjcf_model = mjcf.from_path(xml_file)
+physics = mjcf.Physics.from_mjcf_model(mjcf_model)
 
 
+start_time = time.time()
 ik_result = qpos_from_site_pose(
                         physics,
-                        "attachment_site",
-                        target_pos=apply_transfer(ur2mj, next_ee_pos_ur),
-                        target_quat=target_quat,
-                        tol=1e-14,
+                        "r_hand_site",
+                        target_pos=[0.0, 0.0, 0.0],
+                        target_quat=[0, 0, 1, 0],
+                        tol=1e-10,
                         max_steps=400,
                     )
+end_time = time.time()
 
-
-
-
-
-
-
-
-
-
-
+print(ik_result)
+print(ik_result.qpos.shape)
+print(f"Time taken: {end_time - start_time}")
 
 
 
 # # 加载模型
-# model = mujoco.MjModel.from_xml_path(xml_file)  # 替换为您的模型文件路径
-# data = mujoco.MjData(model)
+model = mujoco.MjModel.from_xml_path(xml_file)  # 替换为您的模型文件路径
+data = mujoco.MjData(model)
 
-# n_joints = model.njnt
+# mujoco.viewer.
+print(model)
+geom_id = model.geom("marker_sphere")
+print('geom_id = ', geom_id)
+data.geom_xpos[geom_id.id] = [0.0, 0.0, 0.0]
 
-# for i in range(model.njnt):
-#     joint_name = mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_JOINT, i)
-#     print(f'joint index: {i}, joint name: {joint_name}')
+
+n_joints = model.njnt
+
+for i in range(model.njnt):
+    joint_name = mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_JOINT, i)
+    # print(f'joint index: {i}, joint name: {joint_name}')
 
 
 # ret = qpos_from_site_pose(model, 'l_hand_roll', [0.5, 0.5, 0.5], [0, 0, 0, 1])
@@ -77,13 +80,11 @@ ik_result = qpos_from_site_pose(
 # print("Desire point =>", result_point, "\n")
 
 # 使用 MuJoCo 视图显示模型
-# with mujoco.viewer.launch_passive(model, data) as viewer:
-#     while viewer.is_running():
-#         mujoco.mj_step(model, data)
-        
-#         print(data.body('l_hand_roll').xpos)
-        
-#         viewer.sync()
+with mujoco.viewer.launch_passive(model, data) as viewer:
+    while viewer.is_running():
+        data.qpos = ik_result.qpos
+        mujoco.mj_step(model, data)
+        viewer.sync()
 
 # while True:
 #     mujoco.mj_step(model, data)

@@ -61,6 +61,7 @@
         <mesh name="head_pitch" file="head_pitch.STL" />
     </asset>
     <worldbody>
+        <geom name="marker_sphere" type="sphere" size="0.05" pos="1 0 0" rgba="1 0 0 1"/>
         <geom type="mesh" rgba="1 1 1 1" mesh="torso" />
         <body name="l_arm_pitch" pos="-0.0175476 0.2547 0.3245">
             <inertial pos="0.0146835 -0.0166604 -6.82857e-05" quat="0.696586 0.712206 -0.0625859 -0.0601207" mass="0.165847" diaginertia="0.000271947 0.000196224 0.000121256" />
@@ -90,8 +91,8 @@
                                     <inertial pos="0.00396051 0.00946265 -0.0666022" quat="0.394947 0.570359 0.314196 0.648066" mass="0.151353" diaginertia="0.000146582 0.000119118 9.05737e-05" />
                                     <joint name="l_hand_roll" pos="0 0 0" axis="1 0 0" limited="true" range="-1.5708 1.5708" />
                                     <geom type="mesh" rgba="1 1 1 1" mesh="l_hand_roll" />
-                            
-                                    <site name="attachment_site" pos="0 0.1 0" quat="-1 1 0 0"/>
+                                    
+                                    <site name="l_hand_site" pos="0 0.1 0" quat="0 0 0 1"/>
 
                                     <body name="l_thumb_proximal_yaw" pos="0.025 -0.0216278 -0.1107">
                                         <inertial pos="0.00590167 -0.00373751 0.000119122" quat="0.600132 0.648007 0.296079 0.363683" mass="0.00177458" diaginertia="1.00106e-07 9.8657e-08 3.43995e-08" />
@@ -178,6 +179,9 @@
                                     <inertial pos="0.00300068 -0.009483 -0.0665274" quat="0.648563 0.314072 0.569303 0.395751" mass="0.151513" diaginertia="0.000146677 0.000119257 9.06236e-05" />
                                     <joint name="r_hand_roll" pos="0 0 0" axis="1 0 0" limited="true" range="-1.5708 1.5708" />
                                     <geom type="mesh" rgba="1 1 1 1" mesh="r_hand_roll" />
+                                    
+                                    <site name="r_hand_site" pos="0 0.1 0" quat="0 0 0 1"/>
+
                                     <body name="r_thumb_proximal_yaw" pos="0.0240163 0.0216278 -0.1107">
                                         <inertial pos="0.00590167 0.00373751 0.000280878" quat="0.296079 0.363683 0.600132 0.648007" mass="0.00177458" diaginertia="1.00106e-07 9.8657e-08 3.43995e-08" />
                                         <joint name="r_thumb_proximal_yaw" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" />
