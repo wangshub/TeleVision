@@ -62,17 +62,14 @@ class VuerTeleop:
         self.right_retargeting = right_retargeting_config.build()
 
     def step(self):
-        dx = 0
-        dy = 0.05
-        dz = -1.11
         
         head_mat, left_wrist_mat, right_wrist_mat, left_hand_mat, right_hand_mat = self.processor.process(self.tv)
 
         head_rmat = head_mat[:3, :3]
 
-        left_pose = np.concatenate([left_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]) + np.array([dx, dy, dz]),
+        left_pose = np.concatenate([left_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]),
                                     rotations.quaternion_from_matrix(left_wrist_mat[:3, :3])[[1, 2, 3, 0]]])
-        right_pose = np.concatenate([right_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]) + np.array([dx, dy, dz]),
+        right_pose = np.concatenate([right_wrist_mat[:3, 3] + np.array([-0.6, 0, 1.6]),
                                      rotations.quaternion_from_matrix(right_wrist_mat[:3, :3])[[1, 2, 3, 0]]])
         left_qpos = self.left_retargeting.retarget(left_hand_mat[tip_indices])[[4, 5, 6, 7, 10, 11, 8, 9, 0, 1, 2, 3]]
         right_qpos = self.right_retargeting.retarget(right_hand_mat[tip_indices])[[4, 5, 6, 7, 10, 11, 8, 9, 0, 1, 2, 3]]
@@ -272,32 +269,61 @@ class Sim:
         self.gym.destroy_viewer(self.viewer)
         self.gym.destroy_sim(self.sim)
 
+def bundary_position(position):
+    new_position = [position[0], position[1], position[2]]
+    boundary = [[0, 0.44], 
+             [-0.7, 0.7], 
+             [-0.11, 0.33]]
+    for i in range(3):
+        if new_position[i] < boundary[i][0]:
+            new_position[i] = boundary[i][0]
+        if new_position[i] > boundary[i][1]:
+            new_position[i] = boundary[i][1]
+    return new_position
+    
+    
+
 
 if __name__ == '__main__':
     teleoperator = VuerTeleop('inspire_hand.yml')
     simulator = Sim()
-
+    
+    # VR 坐标系到 Robot 坐标系变换
+    dx = 0.6
+    dy = 0.05
+    dz = -1.11
+    
+    is_start_teleop = False
+    
     try:
         while not rospy.is_shutdown():
             head_rmat, left_pose, right_pose, left_qpos, right_qpos = teleoperator.step()
             
-            print(f"left_pose = {list(left_pose)} \
-                    right_pose = {list(right_pose)}")
+            l_hand_q = left_pose[3:7]
+            l_hand_p = left_pose[0:3] + np.array([dx, dy, dz])
+            l_hand_p = bundary_position(l_hand_p)
             
-            left_hand_pose = list(left_pose[3:7]) + list(left_pose[0:3])
-            right_hand_pose = list(right_pose[3:7]) + list(right_pose[0:3])
+            r_hand_q = left_pose[3:7]
+            r_hand_p = left_pose[0:3] + np.array([dx, dy, dz])
+            r_hand_p = bundary_position(r_hand_p)
+            
+            
+            left_hand_pose = list(l_hand_q) + list(l_hand_p)
+            right_hand_pose = list(r_hand_q) + list(r_hand_p)
+            
+            print(f"left_pose = {list(left_hand_pose[4:])} \
+                    right_pose = {list(right_hand_pose[4:])}")
             
             distance = np.linalg.norm(left_pose[0:3] - right_pose[0:3])
             # print(f"distance = {distance}")
             
-            if distance < 0.2:
+            if distance < 0.1:
+                is_start_teleop = True
                 print(f"distance = {distance}")
                 
-                left_hand_pose = [0.19328227213020552, -0.08784123850111165, -0.0024117972675048727, 0.9772001142717476, 0.15, 0.18858534693717957, -0.2533614903688431]
-                
+            if is_start_teleop:
                 arm_pose_publish(0, left_hand_pose, right_hand_pose)
             
-            # arm_pose_publish(1, left_hand_pose, right_hand_pose)
             
             left_img, right_img = simulator.step(head_rmat, left_pose, right_pose, left_qpos, right_qpos)
             np.copyto(teleoperator.img_array, np.hstack((left_img, right_img)))
