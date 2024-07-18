@@ -23,7 +23,7 @@ import time
 import yaml
 from multiprocessing import Array, Process, shared_memory, Queue, Manager, Event, Semaphore
 
-rospy.init_node('ik_arm_target_topic_publisher')
+rospy.init_node('vr_ik_arm_target_topic_publisher')
 
 def arm_pose_publish(offset, left_hand_pose, right_hand_pose):
     pub = rospy.Publisher('/kuavo_hand_pose', armPoseWithTimeStamp, queue_size=10)  # 创建一个发布者
@@ -298,12 +298,14 @@ if __name__ == '__main__':
     try:
         while not rospy.is_shutdown():
             head_rmat, left_pose, right_pose, left_qpos, right_qpos = teleoperator.step()
-            
+            # left_pose = [3(xyz) + 4(xyzw)]
             l_hand_q = left_pose[3:7]
+            # l_hand_q = np.roll(l_hand_q, 1)
             l_hand_p = left_pose[0:3] + np.array([dx, dy, dz])
             l_hand_p = bundary_position(l_hand_p)
             
             r_hand_q = left_pose[3:7]
+            # r_hand_q = np.roll(r_hand_q, 1)
             r_hand_p = left_pose[0:3] + np.array([dx, dy, dz])
             r_hand_p = bundary_position(r_hand_p)
             
@@ -311,8 +313,10 @@ if __name__ == '__main__':
             left_hand_pose = list(l_hand_q) + list(l_hand_p)
             right_hand_pose = list(r_hand_q) + list(r_hand_p)
             
-            print(f"left_pose = {list(left_hand_pose[4:])} \
-                    right_pose = {list(right_hand_pose[4:])}")
+            # print(f"left_pose = {list(left_hand_pose[4:])} \
+            #         right_pose = {list(right_hand_pose[4:])}")
+            
+            print(f"l_hand_q = {l_hand_q}, \t  r_hand_q = {r_hand_q}")
             
             distance = np.linalg.norm(left_pose[0:3] - right_pose[0:3])
             # print(f"distance = {distance}")
@@ -327,6 +331,8 @@ if __name__ == '__main__':
             
             left_img, right_img = simulator.step(head_rmat, left_pose, right_pose, left_qpos, right_qpos)
             np.copyto(teleoperator.img_array, np.hstack((left_img, right_img)))
+            
+            # rospy.spin_once()
     except KeyboardInterrupt:
         simulator.end()
         exit(0)
